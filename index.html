@@ -1,41 +1,53 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Video.js Dev Server</title>
+<meta charset="UTF-8">
+<title>HLS Player</title>
+
+<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+<style>
+  body { font-family: Arial; text-align:center; padding:30px; }
+  button { margin:5px; padding:10px; }
+</style>
 </head>
 <body>
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="test/debug.html">Run unit tests in browser.</a></li>
-    <li><a href="docs/api/">view api docs</a></li>
-    <li><a href="sandbox/index.html">Simple Demo (also seen below)</a></li>
-    <li><a href="sandbox/plugin.html">Plugin Demo</a></li>
-    <li><a href="sandbox/responsive.html">Responsive Demo</a></li>
-    <li><a href="sandbox/middleware-play.html">Middleware Play Demo</a></li>
-    <li><a href="sandbox/icons.html">Icons Demo</a></li>
-    <li><a href="sandbox/svg-icons.html">SVG Icons Directory</a></li>
-    <li><a href="sandbox/svg-icons-enabled.html">SVG Icons Demo</a></li>
-    <li><a href="sandbox/focus-visible.html">Focus Visible Demo</a></li>
-    <li><a href="sandbox/embeds.html">Embeds Demo</a></li>
-    <li><a href="sandbox/descriptions.html">Descriptions Demo</a></li>
-    <li><a href="sandbox/combined-tracks.html">Combined Tracks Demo</a></li>
-    <li><a href="sandbox/live.html">Live Demo</a></li>
-    <li><a href="sandbox/liveui.html">LiveUI Demo</a></li>
-    <li><a href="sandbox/vertical-volume.html">Vertical Volume Demo</a></li>
-    <li><a href="sandbox/language.html">Language Demo</a></li>
-    <li><a href="sandbox/load-media.html"><code>loadMedia</code> Demo</a></li>
-    <li><a href="sandbox/hls.html">Hls Demo</a></li>
-    <li><a href="sandbox/quality-levels.html">QualityLevels Demo</a></li>
-    <li><a href="sandbox/autoplay-tests.html">Autoplay Tests</a></li>
-    <li><a href="sandbox/noUITitleAttributes.html">noUITitleAttributes Demo</a></li>
-    <li><a href="sandbox/docpip.html">Document Picture-In-Picture Demo</a></li>
-    <li><a href="sandbox/skip-buttons.html">Skip Buttons demo</a></li>
-    <li><a href="sandbox/transient-button.html">Transient Button demo</a></li>
-    <li><a href="sandbox/debug.html">Videojs debug build test page</a></li>
-  </ul>
 
-  <h2>Simple Demo (in an iframe)</h2>
-  <iframe src="sandbox/index.html" width=700 height=500></iframe>
+<video
+  id="player"
+  class="video-js vjs-default-skin"
+  width="720"
+  height="400"
+  controls
+>
+  <source src="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" type="application/x-mpegURL">
+</video>
+
+<div>
+  <button onclick="playVid()">Play</button>
+  <button onclick="pauseVid()">Pause</button>
+  <button onclick="stopVid()">Stop</button>
+  <button onclick="forward()">+5 sec</button>
+  <button onclick="back()">-5 sec</button>
+</div>
+
+<script>
+const player = videojs('player');
+
+function playVid(){ player.play(); }
+function pauseVid(){ player.pause(); }
+function stopVid(){
+  player.pause();
+  player.currentTime(0);
+}
+function forward(){
+  player.currentTime(player.currentTime()+5);
+}
+function back(){
+  player.currentTime(player.currentTime()-5);
+}
+</script>
+
 </body>
 </html>
