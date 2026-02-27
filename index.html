@@ -30,14 +30,12 @@ value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant
 const video = document.getElementById("player");
 let hls;
 
-// ---------- PLAYER CONTROLS ----------
 function playVid(){ video.play(); }
 function pauseVid(){ video.pause(); }
 function stopVid(){ video.pause(); video.currentTime = 0; }
 function forward(){ video.currentTime += 5; }
 function back(){ video.currentTime -= 5; }
 
-// ---------- LOAD VIDEO ----------
 function loadVideo(inputId){
     const url = document.getElementById(inputId).value;
 
